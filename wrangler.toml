@@ -1,0 +1,34 @@
+name = "accounts"
+type = "javascript"
+workers_dev = true
+compatibility_date = "2021-08-27"
+compatibility_flags = [ "formdata_parser_supports_files" ]
+
+kv_namespaces = [
+  { binding = "AUTH_STORE", id = "SOME_BINDING", preview_id = "SOME_BINDING"}
+]
+
+[vars]
+HOST_DOMAIN = "http://127.0.0.1:8787"
+COOKIE_DOMAIN = "127.0.0.1"
+
+[env.production]
+kv_namespaces = [
+  { binding = "AUTH_STORE", id = "SOME_BINDING"}
+]
+
+[env.production.vars]
+HOST_DOMAIN = "myaccounts.mydomain.com"
+COOKIE_DOMAIN = "mydomain.com"
+
+[build]
+command = "cargo install -q worker-build && worker-build --release" # required
+
+[build.upload]
+dir    = "build/worker"
+format = "modules"
+main   = "./shim.mjs"
+
+[[build.upload.rules]]
+globs = ["**/*.wasm"]
+type  = "CompiledWasm"

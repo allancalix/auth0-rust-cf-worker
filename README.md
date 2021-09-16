@@ -1,7 +1,7 @@
 # Authentication Cloudflare Worker
 
 A Rust implementation of Cloudflare's authentication [integration guide for
-Auth0][Integration Guide].This worker uses Cloudflare's [Rust bindings](
+Auth0][Integration Guide]. This worker uses Cloudflare's [Rust bindings](
 https://github.com/cloudflare/workers-rs) and compiles targets a WASM binary.
 This project was mainly an experiment to evaluate the platform and specifically
 the Rust bindings. The goal here is _not to develop a production-ready
